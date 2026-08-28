@@ -1,0 +1,58 @@
+import type { PropsWithChildren } from "react";
+
+const proseClasses = [
+    "mt-6 text-base leading-7",
+    "[&_p]:my-4",
+    "[&_strong]:font-semibold",
+    "[&_del]:text-muted [&_del]:line-through",
+    "[&_a]:text-link [&_a]:break-words",
+    "[&_a]:underline [&_a]:underline-offset-2",
+    "[&_h1]:mt-10 [&_h1]:mb-3 [&_h1]:border-b [&_h1]:border-line [&_h1]:pb-2 [&_h1]:text-3xl [&_h1]:font-semibold",
+    "[&_h2]:border-line [&_h2]:mt-10 [&_h2]:mb-3",
+    "[&_h2]:border-b [&_h2]:pb-2 [&_h2]:text-xl [&_h2]:font-semibold",
+    "[&_h3]:mt-8 [&_h3]:mb-2 [&_h3]:text-lg [&_h3]:font-semibold",
+    "[&_h4]:mt-6 [&_h4]:mb-2 [&_h4]:font-semibold",
+    "[&_h5]:mt-6 [&_h5]:mb-2 [&_h5]:font-semibold",
+    "[&_h6]:mt-6 [&_h6]:mb-2 [&_h6]:font-semibold",
+    "[&_blockquote]:border-line [&_blockquote]:text-muted [&_blockquote]:my-4",
+    "[&_blockquote]:border-l-2 [&_blockquote]:pl-4",
+    "[&_code]:bg-surface [&_code]:rounded-md [&_code]:px-1 [&_code]:py-0.5",
+    "[&_code]:font-mono [&_code]:text-sm",
+    "[&_pre]:border-line [&_pre]:bg-surface [&_pre]:my-4 [&_pre]:rounded-md",
+    "[&_pre]:overflow-x-auto [&_pre]:border [&_pre]:p-4",
+    "[&_pre_code]:bg-transparent [&_pre_code]:p-0",
+    "[&_hr]:border-line [&_hr]:my-8",
+    "[&_img]:my-4 [&_img]:max-w-full [&_img]:rounded-md",
+    "[&_ul]:my-4 [&_ul]:list-disc [&_ul]:pl-6",
+    "[&_ol]:my-4 [&_ol]:list-decimal [&_ol]:pl-6",
+    "[&_li]:my-1",
+    "[&_[data-task-list]]:list-none [&_[data-task-list]]:pl-0",
+    "[&_li_[data-task-list]]:pl-5",
+    "[&_[data-task-item]>input]:accent-accent [&_[data-task-item]>input]:mr-1",
+    "[&_[data-task-item]>input]:align-middle",
+    "[&_[data-task-item]>p:first-of-type]:inline",
+    "[&_[data-table-scroll]]:my-6 [&_[data-table-scroll]]:overflow-x-auto",
+    "[&_table]:text-sm",
+    "[&_th]:border-line [&_th]:bg-surface [&_th]:border-b [&_th]:px-3",
+    "[&_th]:py-2 [&_th]:text-left [&_th]:font-semibold",
+    "[&_td]:border-line [&_td]:border-t [&_td]:px-3 [&_td]:py-2",
+    "[&_[data-align=left]]:text-left",
+    "[&_[data-align=center]]:text-center",
+    "[&_[data-align=right]]:text-right",
+    "[&_[data-footnotes]]:border-line [&_[data-footnotes]]:text-muted",
+    "[&_[data-footnotes]]:mt-10 [&_[data-footnotes]]:border-t",
+    "[&_[data-footnotes]]:pt-4 [&_[data-footnotes]]:text-sm",
+    "[&_[data-footnotes]_h2]:text-muted [&_[data-footnotes]_h2]:mt-0",
+    "[&_[data-footnotes]_h2]:mb-2 [&_[data-footnotes]_h2]:border-0",
+    "[&_[data-footnotes]_h2]:pb-0 [&_[data-footnotes]_h2]:text-sm",
+    "[&_[data-footnotes]_h2]:tracking-wide [&_[data-footnotes]_h2]:uppercase",
+    "[&_[data-footnotes]_p]:my-2",
+    "[&_[data-footnote-backref]]:ml-1",
+    "[&_[data-footnote-backref]]:no-underline",
+].join(" ");
+
+const Prose = ({ children }: PropsWithChildren) => (
+    <div className={proseClasses}>{children}</div>
+);
+
+export default Prose;

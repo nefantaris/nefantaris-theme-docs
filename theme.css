@@ -1,0 +1,12 @@
+@theme {
+    --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+    --color-page: #ffffff;
+    --color-surface: #f6f6f4;
+    --color-ink: #1c1c1c;
+    --color-muted: #565656;
+    --color-line: #d8d8d4;
+    --color-link: #17558a;
+    --color-accent: #8c4a1f;
+}
