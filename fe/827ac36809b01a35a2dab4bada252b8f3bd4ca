@@ -1,0 +1,60 @@
+BRIEF.md
+  s_a8137800e380bc::t_dd336aa93012f2 15-28,37-38,47-48
+  s_a8137800e380bc::t_b72be4a280e7fe 5-14,49-65
+components/Prose.tsx
+  s_a8137800e380bc::t_681595deb2d4a3 3-53
+  s_a8137800e380bc::t_a2d0f014c7ff63 1-2
+  s_a8137800e380bc::t_c2fae7a9254d38 54-56
+components/Sidebar.tsx
+  s_a8137800e380bc::t_26fb22fe216fa2 1-41,45-90
+  s_a8137800e380bc::t_162d48874a9414 42-44
+  s_a8137800e380bc::t_a6d8dd595f1d2e 91-94
+docsRoutes.ts
+  s_a8137800e380bc::t_f6fe39f261e6b8 1-70
+  s_a8137800e380bc::t_0e04b7004c8db6 71
+templates/DocsPageTemplate.tsx
+  s_a8137800e380bc::t_37ef6fbdca1cfc 1-61
+  s_a8137800e380bc::t_39b31fe7ae5cdf 62-67
+.github/workflows/check.yml
+  s_a8137800e380bc::t_4f6c937da57200 1,15-24,31,33-35,37-39
+.gitignore
+  s_63d163699a8600::t_67f8bee0a2b592 1,3
+Layout.tsx
+  s_a8137800e380bc::t_cc6c4b28abea4c 1-85
+README.md
+  s_a8137800e380bc::t_ae7b6daec86ba7 3,5-44,48-57
+classNames.ts
+  s_a8137800e380bc::t_95e79383001de2 4,6-9,11-14,16-20,23
+templates/NotFoundTemplate.tsx
+  s_a8137800e380bc::t_30bb4ae983babe 1,4-16,18
+templates/PageTemplate.tsx
+  s_a8137800e380bc::t_a8b78bf322c275 1-2,4-11,13-14
+theme.css
+  s_a8137800e380bc::t_db768e60b67712 1-3,5-12
+theme.json
+  s_a8137800e380bc::t_2cfc356490f25c 2-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "fe827ac36809b01a35a2dab4bada252b8f3bd4ca",
+  "prompts": {},
+  "sessions": {
+    "s_63d163699a8600": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "db5a9872-d59e-470c-9cb3-8e3fc1478ba8",
+        "model": "claude-opus-5"
+      },
+      "human_author": "adamjsturge <adamjsturge@gmail.com>"
+    },
+    "s_a8137800e380bc": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e19e05f8-cf7f-4c99-b211-3932115db6d2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "adamjsturge <adamjsturge@gmail.com>"
+    }
+  }
+}
