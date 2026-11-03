@@ -1,0 +1,19 @@
+.claude/rules/frontend.md
+  s_59ac45ccf7982e::t_6143b98997a835 148,196,223,229
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "87d3961a7c0fd6ac33ce5db560edb049775d5683",
+  "prompts": {},
+  "sessions": {
+    "s_59ac45ccf7982e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fe1a2f26-ac70-4aa3-a3f2-aac3257900c5",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "adamjsturge <adamjsturge@gmail.com>"
+    }
+  }
+}
