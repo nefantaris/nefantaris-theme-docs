@@ -21,9 +21,9 @@ Authored ordering works. A page's `order` frontmatter reaches the theme on
 `RouteSummary`, core sorts `routes` by `order` first and `path` second, and the
 sidebar and prev/next both walk that sequence — pages that declare an `order`
 lead, the rest keep the alphabetical tail. The theme groups sections by the
-first path segment at first appearance, so an authored sequence that jumps
-between segments still collapses into one group per segment rather than
-repeating one.
+first path segment below the folder every docs page shares, at first
+appearance, so an authored sequence that jumps between segments still collapses
+into one group per segment rather than repeating one.
 
 The rest of the v1 scope below is Phase 3 work.
 

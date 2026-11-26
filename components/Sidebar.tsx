@@ -1,28 +1,46 @@
 import type { RouteSummary } from "nefantaris";
+import { useState } from "react";
 import { Link } from "wouter";
 import classNames from "../classNames";
-import { docsSections, type DocsSection } from "../docsRoutes";
+import {
+    docsLocation,
+    docsSections,
+    isCurrentRoute,
+    type DocsEntry,
+    type DocsSection,
+} from "../docsRoutes";
+import Icon from "./Icon";
+
+const numberClasses = "w-8 shrink-0 font-mono text-xs tabular-nums";
 
 type SidebarLinkProps = {
-    route: RouteSummary;
+    entry: DocsEntry;
     currentPath: string;
 };
 
-const SidebarLink = ({ route, currentPath }: SidebarLinkProps) => {
-    const isCurrent = route.path === currentPath;
+const SidebarLink = ({ entry, currentPath }: SidebarLinkProps) => {
+    const isCurrent = isCurrentRoute(entry.route.path, currentPath);
 
     return (
         <Link
-            href={route.path}
+            href={entry.route.path}
             aria-current={isCurrent ? "page" : undefined}
             className={classNames(
-                "block rounded-md px-2 py-1 transition-colors duration-100",
+                "flex items-baseline gap-2 rounded-md px-2 py-2.5 transition-colors duration-100 focus-visible:-outline-offset-2 lg:py-1.5",
                 isCurrent
-                    ? "bg-page text-ink font-semibold"
-                    : "text-muted hover:bg-page hover:text-ink"
+                    ? "bg-surface text-ink font-medium"
+                    : "text-muted hover:bg-surface hover:text-ink"
             )}
         >
-            {route.title}
+            <span
+                className={classNames(
+                    numberClasses,
+                    isCurrent ? "text-accent" : "text-muted"
+                )}
+            >
+                {entry.number}
+            </span>
+            <span className="min-w-0">{entry.route.title}</span>
         </Link>
     );
 };
@@ -33,22 +51,29 @@ type SidebarSectionProps = {
 };
 
 const SidebarSection = ({ section, currentPath }: SidebarSectionProps) => {
-    const links = section.routes.map((route) => (
-        <li key={route.path}>
-            <SidebarLink route={route} currentPath={currentPath} />
+    const labelId = `docs-section-${section.number}`;
+    const links = section.entries.map((entry) => (
+        <li key={entry.route.path}>
+            <SidebarLink entry={entry} currentPath={currentPath} />
         </li>
     ));
 
     return section.label === undefined ? (
         <>{links}</>
     ) : (
-        <li>
-            <h3 className="text-ink mt-3 px-2 py-1 text-sm font-semibold">
+        <li className="not-first:mt-6 [&+li]:mt-6">
+            <p
+                id={labelId}
+                className="text-ink flex items-baseline gap-2 px-2 py-2.5 font-semibold lg:py-1.5"
+            >
+                <span className={classNames(numberClasses, "text-muted")}>
+                    {section.number}
+                </span>
                 {section.label}
-            </h3>
-            <ul className="border-line ml-3 flex flex-col gap-1 border-l pl-2">
+            </p>
+            <ol aria-labelledby={labelId} className="flex flex-col gap-0.5">
                 {links}
-            </ul>
+            </ol>
         </li>
     );
 };
@@ -59,35 +84,69 @@ type SidebarProps = {
 };
 
 const Sidebar = ({ routes, currentPath }: SidebarProps) => {
+    const [openedAt, setOpenedAt] = useState<string>();
     const sections = docsSections(routes);
+    const { current } = docsLocation(routes, currentPath);
+    const isOpen = openedAt === currentPath;
 
     return (
-        <nav
-            aria-labelledby="docs-nav-heading"
-            className="bg-surface border-line shrink-0 self-start rounded-md border p-4 md:w-64"
-        >
-            <h2
-                id="docs-nav-heading"
-                className="text-muted mb-3 text-sm font-semibold tracking-wide uppercase"
-            >
-                Documentation
-            </h2>
-            {sections.length === 0 ? (
-                <p className="text-muted text-sm">
-                    No documentation pages yet.
-                </p>
-            ) : (
-                <ul className="flex flex-col gap-1 text-sm">
-                    {sections.map((section) => (
-                        <SidebarSection
-                            key={section.key}
-                            section={section}
-                            currentPath={currentPath}
-                        />
-                    ))}
-                </ul>
-            )}
-        </nav>
+        <div className="lg:border-line pt-4 lg:w-(--width-sidebar) lg:shrink-0 lg:border-r lg:pt-0 print:hidden">
+            <div className="lg:sticky lg:top-0 lg:max-h-screen lg:overflow-y-auto lg:pt-10.5 lg:pr-4 lg:pb-12">
+                <button
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-controls="docs-sidebar"
+                    onClick={() =>
+                        setOpenedAt(isOpen ? undefined : currentPath)
+                    }
+                    className="bg-surface text-ink flex h-11 w-full items-center gap-3 rounded-md px-4 text-left text-sm transition-colors duration-100 lg:hidden"
+                >
+                    <Icon name="contents" className="text-muted" />
+                    <span className="font-medium">Contents</span>
+                    {!!current && (
+                        <span className="text-muted flex min-w-0 items-baseline gap-2">
+                            <span className="font-mono text-xs">
+                                {current.number}
+                            </span>
+                            <span className="truncate">
+                                {current.route.title}
+                            </span>
+                        </span>
+                    )}
+                    <Icon
+                        name="chevronDown"
+                        className={classNames(
+                            "text-muted ml-auto transition-transform duration-100",
+                            isOpen && "rotate-180"
+                        )}
+                    />
+                </button>
+                <nav
+                    id="docs-sidebar"
+                    aria-label="Documentation"
+                    className={classNames(
+                        isOpen ? "block" : "hidden",
+                        "border-line mt-2 rounded-md border p-2 text-sm lg:mt-0 lg:block lg:border-0 lg:p-0"
+                    )}
+                >
+                    {sections.length === 0 ? (
+                        <p className="text-muted px-2 py-1.5">
+                            No documentation pages yet
+                        </p>
+                    ) : (
+                        <ol className="flex flex-col gap-0.5">
+                            {sections.map((section) => (
+                                <SidebarSection
+                                    key={section.key}
+                                    section={section}
+                                    currentPath={currentPath}
+                                />
+                            ))}
+                        </ol>
+                    )}
+                </nav>
+            </div>
+        </div>
     );
 };
 

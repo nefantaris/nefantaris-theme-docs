@@ -1,63 +1,76 @@
-import type { RouteSummary, TemplateProps } from "nefantaris";
+import type { TemplateProps } from "nefantaris";
 import { Link, useLocation } from "wouter";
 import classNames from "../classNames";
+import Icon from "../components/Icon";
+import PageHeader from "../components/PageHeader";
 import Prose from "../components/Prose";
-import { docsNeighbours } from "../docsRoutes";
+import { docsLocation, type DocsEntry } from "../docsRoutes";
 
 type NeighbourLinkProps = {
-    route: RouteSummary;
-    direction: string;
-    isTrailing?: boolean;
+    entry: DocsEntry;
+    direction: "Previous" | "Next";
 };
 
-const NeighbourLink = ({
-    route,
-    direction,
-    isTrailing,
-}: NeighbourLinkProps) => (
-    <Link
-        href={route.path}
-        className={classNames(
-            "text-link block rounded-md px-2 py-1",
-            isTrailing && "ml-auto text-right"
-        )}
-    >
-        <span className="text-muted block text-xs font-semibold tracking-wide uppercase">
-            {direction}
-        </span>
-        <span className="underline underline-offset-2">{route.title}</span>
-    </Link>
-);
+const NeighbourLink = ({ entry, direction }: NeighbourLinkProps) => {
+    const isNext = direction === "Next";
+
+    return (
+        <Link
+            href={entry.route.path}
+            rel={isNext ? "next" : "prev"}
+            className={classNames(
+                "border-line hover:bg-surface flex flex-col gap-1 rounded-md border px-4 py-3 transition-colors duration-100",
+                isNext && "sm:col-start-2 sm:items-end sm:text-right"
+            )}
+        >
+            <span className="text-muted flex items-center gap-1 text-sm">
+                {!isNext && <Icon name="arrowLeft" isSmall />}
+                {direction}
+                {isNext && <Icon name="arrowRight" isSmall />}
+            </span>
+            <span className="text-ink flex items-baseline gap-2 font-medium">
+                <span className="text-muted font-mono text-xs font-normal">
+                    {entry.number}
+                </span>
+                {entry.route.title}
+            </span>
+        </Link>
+    );
+};
 
 const DocsPageTemplate = ({ meta, routes, children }: TemplateProps) => {
     const [currentPath] = useLocation();
-    const { previous, next } = docsNeighbours(routes, currentPath);
+    const { section, current, previous, next } = docsLocation(
+        routes,
+        currentPath
+    );
 
     return (
-        <article className="max-w-3xl">
-            <p className="text-accent text-sm font-semibold tracking-wide uppercase">
-                Documentation
-            </p>
-            <h1 className="mt-1 text-2xl font-semibold">{meta.title}</h1>
-            {!!meta.description && (
-                <p className="text-muted mt-2">{meta.description}</p>
-            )}
-            <Prose>{children}</Prose>
+        <article className="max-w-(--width-prose)">
+            <PageHeader
+                title={meta.title}
+                description={meta.description}
+                eyebrow={
+                    !!current && (
+                        <>
+                            <span className="text-accent font-mono">
+                                {current.number}
+                            </span>
+                            {section?.label}
+                        </>
+                    )
+                }
+            />
+            <Prose className="mt-8">{children}</Prose>
             {!!(previous || next) && (
                 <nav
-                    aria-label="Documentation pages"
-                    className="border-line mt-10 flex flex-wrap items-start gap-3 border-t pt-4 text-sm"
+                    aria-label="Previous and next pages"
+                    className="mt-12 grid gap-3 sm:grid-cols-2 print:hidden"
                 >
                     {!!previous && (
-                        <NeighbourLink route={previous} direction="Previous" />
+                        <NeighbourLink entry={previous} direction="Previous" />
                     )}
-                    {!!next && (
-                        <NeighbourLink
-                            route={next}
-                            direction="Next"
-                            isTrailing
-                        />
-                    )}
+                    {!!next && <NeighbourLink entry={next} direction="Next" />}
                 </nav>
             )}
         </article>

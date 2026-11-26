@@ -6,5 +6,6 @@
         "page": "templates/PageTemplate.tsx",
         "notFound": "templates/NotFoundTemplate.tsx",
         "docsPage": "templates/DocsPageTemplate.tsx"
-    }
+    },
+    "modes": ["light", "dark"]
 }
