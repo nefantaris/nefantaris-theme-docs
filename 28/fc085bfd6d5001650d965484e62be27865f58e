@@ -1,0 +1,50 @@
+components/Prose.tsx
+  s_4d971f4aa7953f::t_17f843a5f6abbc 2,5-96,99-104
+components/PageHeader.tsx
+  s_4d971f4aa7953f::t_816e2f63d0cc29 1-27
+theme.css
+  s_4d971f4aa7953f::t_22a2be23ce331e 126-159
+  s_4d971f4aa7953f::t_98b894c9644929 1-125,160-166,168-207
+  s_4d971f4aa7953f::t_985f6180109e30 167
+templates/PageTemplate.tsx
+  s_4d971f4aa7953f::t_3838b3a9ae6ec3 2,6-8
+components/Icon.tsx
+  s_4d971f4aa7953f::t_f632c4383ad5a7 1-52
+  s_4d971f4aa7953f::t_bf442e20e04f82 53-57
+Layout.tsx
+  s_4d971f4aa7953f::t_b93f87a1a05384 2,5-6,8-14,22,27-29,31-34,48,51,53,56,59,63-68,71-110,113-118,122-125,129-130
+  s_4d971f4aa7953f::t_f7aa6b3f69617c 132
+components/ModeSwitch.tsx
+  s_4d971f4aa7953f::t_f198f242ee8598 1-29
+components/Sidebar.tsx
+  s_4d971f4aa7953f::t_0461fc6d5455cb 2,5-14,17,21-22,26,29,31-32,35-43,54-57,64-71,73-74,76,87,89-90,93-147
+  s_4d971f4aa7953f::t_7556b857acd1fa 148-149
+docsRoutes.ts
+  s_4d971f4aa7953f::t_9c11c7ab0fc9e7 5-9,12,14-26,29-32,48-58,62-83,85,87-89,91-94,97-99,102,105-109,111,114-117,119
+templates/NotFoundTemplate.tsx
+  s_4d971f4aa7953f::t_0d7c5fcd85aa59 3-4,7-19
+templates/DocsPageTemplate.tsx
+  s_4d971f4aa7953f::t_9b39d589151d16 1,4-5,7,10-11,14-39,43-46,49-64,67-68,71,73
+BRIEF.md
+  s_4d971f4aa7953f::t_bb2da60fafa687 24-26
+README.md
+  s_4d971f4aa7953f::t_b31895287eb485 15-16,40-72
+theme.json
+  s_4d971f4aa7953f::t_90f5bc7d56f499 9-10
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "28fc085bfd6d5001650d965484e62be27865f58e",
+  "prompts": {},
+  "sessions": {
+    "s_4d971f4aa7953f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8caa4e0b-d8ac-4acf-9411-cfd409cec457",
+        "model": "unknown"
+      },
+      "human_author": "adamjsturge <adamjsturge@gmail.com>"
+    }
+  }
+}
