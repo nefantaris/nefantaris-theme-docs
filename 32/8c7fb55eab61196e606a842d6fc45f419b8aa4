@@ -1,0 +1,107 @@
+README.md
+  s_4d971f4aa7953f::t_237b78a3fa2849 169-170
+  s_4d971f4aa7953f::t_583b0128f8dc6e 167-168
+  s_4d971f4aa7953f::t_c7a48941dd922a 93-95
+  s_4d971f4aa7953f::t_19ed291d30e435 235-237
+  s_4d971f4aa7953f::t_d9fbbd0ded4aa7 189-192
+  s_4d971f4aa7953f::t_775c449657163c 16-17
+  s_4d971f4aa7953f::t_4d7a69f4bdfd86 188
+  s_4d971f4aa7953f::t_4e2e7390920e33 23
+  s_4d971f4aa7953f::t_29e38a73563b85 113-117
+  s_4d971f4aa7953f::t_09478aa0b9d6c6 22
+  s_4d971f4aa7953f::t_aef1088ae5649c 101,111,118-161
+  s_4d971f4aa7953f::t_7b820212c83ec9 15,18-21,57-92,96-100,102-110,112,166,171-172,193-218
+templates/DocsPageTemplate.tsx
+  s_4d971f4aa7953f::t_bb247f93622e2e 91
+  s_4d971f4aa7953f::t_d2c2dc17985559 76-79
+  s_4d971f4aa7953f::t_e4a3cf32756d1c 64
+  s_4d971f4aa7953f::t_a35e152baa6192 38-41
+  s_4d971f4aa7953f::t_4c234d299f9766 37
+  s_4d971f4aa7953f::t_27b5ec5819bd50 42-44
+  s_4d971f4aa7953f::t_73d4744dd3ed7b 62-63
+  s_4d971f4aa7953f::t_52f9364d24def5 65
+  s_4d971f4aa7953f::t_f2c712572464ad 75
+  s_4d971f4aa7953f::t_9d5028a5ef4644 80-82
+  s_376fb3334f2bcc::t_94caa4cc238381 12,15-19,51-56,73,83,89,96-107
+components/PageHeader.tsx
+  s_4d971f4aa7953f::t_61d4d7fb705f61 10
+theme.json
+  s_4d971f4aa7953f::t_320258e0c69504 16
+  s_4d971f4aa7953f::t_8d7317d6a89236 56-57
+  s_4d971f4aa7953f::t_4470ea19d4da4f 10-15,17-32,35-55,58-62,113-275
+  s_4d971f4aa7953f::t_32617ae138f4ba 33-34
+  s_4d971f4aa7953f::t_1292c2dbd64aa9 63-112
+directives/tabStrip.ts
+  s_4d971f4aa7953f::t_cfa3b5d3ef605d 7
+  s_4d971f4aa7953f::t_4163ea888038d0 1-6,8-16
+theme.css
+  s_4d971f4aa7953f::t_fa00f2d65497c6 93-106
+  s_4d971f4aa7953f::t_000198ff9b7173 91-92,122-124,152-154,204-219
+Layout.tsx
+  s_4d971f4aa7953f::t_fff7b5545e6e36 65-68,72,80
+  s_4d971f4aa7953f::t_4afa0777de97a5 137,143-146
+  s_376fb3334f2bcc::t_40e60b5fce98ab 49,54,123-124,128-133
+components/Icon.tsx
+  s_4d971f4aa7953f::t_508ff06418346c 28-29
+  s_4d971f4aa7953f::t_646cb0292c6194 10,13-16,26-27,30-31,34-39,46-51
+directives/Callout.tsx
+  s_4d971f4aa7953f::t_7e3009f8973ba9 40-41
+  s_4d971f4aa7953f::t_91d742548ce2d2 24
+  s_4d971f4aa7953f::t_c1840dc86e34c4 1-23,25,27-38,42-46
+  s_4d971f4aa7953f::t_c88a62d1f4101e 26
+  s_4d971f4aa7953f::t_a541a891d12535 39
+components/Sidebar.tsx
+  s_4d971f4aa7953f::t_5df2d4251fa965 38
+  s_4d971f4aa7953f::t_ee402063a0d8e2 83-86
+  s_4d971f4aa7953f::t_5c09b92da92eb6 119
+  s_4d971f4aa7953f::t_d2cca68ea9ac4d 145-148
+  s_4d971f4aa7953f::t_69354b2ea27cd2 36-37
+  s_4d971f4aa7953f::t_af5ef2b3801d41 39-41
+  s_4d971f4aa7953f::t_c9afb4a7603a54 82
+  s_4d971f4aa7953f::t_bce484aabc82ac 87-89
+  s_4d971f4aa7953f::t_4ae1c3f4a79c6c 118
+  s_4d971f4aa7953f::t_89326813356857 120-122
+  s_4d971f4aa7953f::t_094b76850e1fb9 144
+  s_4d971f4aa7953f::t_827caf609caff0 149-151
+  s_376fb3334f2bcc::t_a4c52725a60c20 19,22,42-46,55,58-62,66-70,102-103,106-111,123-130,184
+components/Prose.tsx
+  s_4d971f4aa7953f::t_f333b48889e0da 104-106
+directives/Tab.tsx
+  s_4d971f4aa7953f::t_8ac0902f31c109 12
+  s_4d971f4aa7953f::t_84c2ab267af94b 1-2,10-11,13-22
+  s_4d971f4aa7953f::t_6d3e98147fc7ac 3-5,7-9
+  s_376fb3334f2bcc::t_15ba9360be1e1c 6
+directives/Tabs.tsx
+  s_4d971f4aa7953f::t_602d672a472537 65
+  s_4d971f4aa7953f::t_6d6a96118262dc 106-111
+  s_4d971f4aa7953f::t_a7b0faba75fa1d 1-13,15-19,21-64,66-105,112-136
+  s_4d971f4aa7953f::t_b741b6b76edac0 14,20
+fonts/OFL-OpenSans.txt
+  s_4d971f4aa7953f::t_3856cbc1653ba0 1-93
+fonts/OFL-SourceCodePro.txt
+  s_4d971f4aa7953f::t_4e582b2a106098 1-93
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "328c7fb55eab61196e606a842d6fc45f419b8aa4",
+  "prompts": {},
+  "sessions": {
+    "s_376fb3334f2bcc": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "agent-a9bc7b9ff140c1c7c",
+        "model": "unknown"
+      },
+      "human_author": "adamjsturge <adamjsturge@gmail.com>"
+    },
+    "s_4d971f4aa7953f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8caa4e0b-d8ac-4acf-9411-cfd409cec457",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "adamjsturge <adamjsturge@gmail.com>"
+    }
+  }
+}
