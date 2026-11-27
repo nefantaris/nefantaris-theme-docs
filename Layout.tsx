@@ -46,10 +46,12 @@ const Layout = ({
     currentPath,
     template,
     modes,
+    settings,
     children,
 }: LayoutProps) => {
     const [menuOpenedAt, setMenuOpenedAt] = useState<string>();
     const isDocsRoute = template === docsTemplateName;
+    const isSidebarRight = settings.sidebarSide === "right";
     const isMenuOpen = menuOpenedAt === currentPath;
 
     return (
@@ -60,10 +62,14 @@ const Layout = ({
             >
                 Skip to main content
             </a>
-            <header className="border-line border-b print:hidden">
+            <header
+                data-part="site-header"
+                className="border-line border-b print:hidden"
+            >
                 <div className="mx-auto flex max-w-(--width-page) flex-wrap items-center gap-x-6 px-4 sm:px-6">
                     <Link
                         href="/"
+                        data-part="site-name"
                         className="text-ink min-w-0 truncate py-4 text-base leading-6 font-semibold"
                     >
                         {site.name}
@@ -71,6 +77,7 @@ const Layout = ({
                     {!!nav.length && (
                         <nav
                             id="site-menu"
+                            data-part="nav"
                             aria-label="Main"
                             className={classNames(
                                 isMenuOpen ? "block" : "hidden",
@@ -113,20 +120,30 @@ const Layout = ({
             <div
                 className={classNames(
                     "mx-auto w-full max-w-(--width-page) grow px-4 sm:px-6",
-                    isDocsRoute && "lg:flex lg:gap-12"
+                    isDocsRoute && "lg:flex lg:gap-12",
+                    isDocsRoute && isSidebarRight && "lg:flex-row-reverse"
                 )}
             >
                 {isDocsRoute && (
-                    <Sidebar routes={routes} currentPath={currentPath} />
+                    <Sidebar
+                        routes={routes}
+                        currentPath={currentPath}
+                        isNumbered={settings.chapterNumbers}
+                        isOnRight={isSidebarRight}
+                    />
                 )}
                 <main
                     id="main-content"
+                    data-part="main"
                     className="min-w-0 grow py-8 lg:py-12 print:py-0"
                 >
                     {children}
                 </main>
             </div>
-            <footer className="border-line border-t print:hidden">
+            <footer
+                data-part="site-footer"
+                className="border-line border-t print:hidden"
+            >
                 <p className="text-muted mx-auto max-w-(--width-page) px-4 py-6 text-sm sm:px-6">
                     {site.name} — built with Nefantaris
                 </p>

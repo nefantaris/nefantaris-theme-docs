@@ -7,7 +7,7 @@ type PageHeaderProps = {
 };
 
 const PageHeader = ({ title, description, eyebrow }: PageHeaderProps) => (
-    <header>
+    <header data-part="page-header">
         {!!eyebrow && (
             <p className="text-muted mb-2 flex items-baseline gap-2 text-sm">
                 {eyebrow}

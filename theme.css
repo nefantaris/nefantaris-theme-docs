@@ -88,6 +88,22 @@
     --color-code: var(--code);
     --color-code-ink: var(--code-ink);
     --color-code-line: var(--code-line);
+    --color-tone: var(--tone);
+
+    --color-brand-primary: var(--accent);
+    --color-brand-primaryHover: color-mix(
+        in oklab,
+        var(--accent) 90%,
+        var(--page)
+    );
+    --color-brand-onPrimary: var(--page);
+    --color-brand-danger: var(--danger);
+    --color-brand-onDanger: var(--page);
+    --color-brand-text: var(--ink);
+    --color-brand-muted: var(--muted);
+    --color-brand-background: var(--page);
+    --color-brand-surface: var(--surface);
+    --color-brand-border: var(--line);
 
     --font-sans: var(--font-text);
     --font-mono: var(--font-code);
@@ -103,6 +119,9 @@
         --page: #fcfcfa;
         --ink: #1c1b19;
         --accent: #a3391b;
+        --tip: #2c6b3f;
+        --warning: #8a5300;
+        --danger: #b3261e;
 
         --font-text:
             "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto,
@@ -130,6 +149,9 @@
             --page: #161514;
             --ink: #e8e6e1;
             --accent: #e8906f;
+            --tip: #8ccb9c;
+            --warning: #e2b766;
+            --danger: #f59a9a;
 
             --surface: color-mix(in oklab, var(--ink) 7%, var(--page));
             --line: color-mix(in oklab, var(--ink) 15%, var(--page));
@@ -179,6 +201,22 @@
 }
 
 @layer components {
+    [data-tone="note"] {
+        --tone: var(--ink);
+    }
+
+    [data-tone="tip"] {
+        --tone: var(--tip);
+    }
+
+    [data-tone="warning"] {
+        --tone: var(--warning);
+    }
+
+    [data-tone="danger"] {
+        --tone: var(--danger);
+    }
+
     :where([data-task-item]) > input[type="checkbox"] {
         display: inline-grid;
         place-content: center;

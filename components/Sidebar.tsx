@@ -16,9 +16,10 @@ const numberClasses = "w-8 shrink-0 font-mono text-xs tabular-nums";
 type SidebarLinkProps = {
     entry: DocsEntry;
     currentPath: string;
+    isNumbered: boolean;
 };
 
-const SidebarLink = ({ entry, currentPath }: SidebarLinkProps) => {
+const SidebarLink = ({ entry, currentPath, isNumbered }: SidebarLinkProps) => {
     const isCurrent = isCurrentRoute(entry.route.path, currentPath);
 
     return (
@@ -32,14 +33,17 @@ const SidebarLink = ({ entry, currentPath }: SidebarLinkProps) => {
                     : "text-muted hover:bg-surface hover:text-ink"
             )}
         >
-            <span
-                className={classNames(
-                    numberClasses,
-                    isCurrent ? "text-accent" : "text-muted"
-                )}
-            >
-                {entry.number}
-            </span>
+            {isNumbered && (
+                <span
+                    data-part="chapter-number"
+                    className={classNames(
+                        numberClasses,
+                        isCurrent ? "text-accent" : "text-muted"
+                    )}
+                >
+                    {entry.number}
+                </span>
+            )}
             <span className="min-w-0">{entry.route.title}</span>
         </Link>
     );
@@ -48,13 +52,22 @@ const SidebarLink = ({ entry, currentPath }: SidebarLinkProps) => {
 type SidebarSectionProps = {
     section: DocsSection;
     currentPath: string;
+    isNumbered: boolean;
 };
 
-const SidebarSection = ({ section, currentPath }: SidebarSectionProps) => {
+const SidebarSection = ({
+    section,
+    currentPath,
+    isNumbered,
+}: SidebarSectionProps) => {
     const labelId = `docs-section-${section.number}`;
     const links = section.entries.map((entry) => (
         <li key={entry.route.path}>
-            <SidebarLink entry={entry} currentPath={currentPath} />
+            <SidebarLink
+                entry={entry}
+                currentPath={currentPath}
+                isNumbered={isNumbered}
+            />
         </li>
     ));
 
@@ -66,9 +79,14 @@ const SidebarSection = ({ section, currentPath }: SidebarSectionProps) => {
                 id={labelId}
                 className="text-ink flex items-baseline gap-2 px-2 py-2.5 font-semibold lg:py-1.5"
             >
-                <span className={classNames(numberClasses, "text-muted")}>
-                    {section.number}
-                </span>
+                {isNumbered && (
+                    <span
+                        data-part="chapter-number"
+                        className={classNames(numberClasses, "text-muted")}
+                    >
+                        {section.number}
+                    </span>
+                )}
                 {section.label}
             </p>
             <ol aria-labelledby={labelId} className="flex flex-col gap-0.5">
@@ -81,17 +99,35 @@ const SidebarSection = ({ section, currentPath }: SidebarSectionProps) => {
 type SidebarProps = {
     routes: RouteSummary[];
     currentPath: string;
+    isNumbered: boolean;
+    isOnRight: boolean;
 };
 
-const Sidebar = ({ routes, currentPath }: SidebarProps) => {
+const Sidebar = ({
+    routes,
+    currentPath,
+    isNumbered,
+    isOnRight,
+}: SidebarProps) => {
     const [openedAt, setOpenedAt] = useState<string>();
     const sections = docsSections(routes);
     const { current } = docsLocation(routes, currentPath);
     const isOpen = openedAt === currentPath;
 
     return (
-        <div className="lg:border-line pt-4 lg:w-(--width-sidebar) lg:shrink-0 lg:border-r lg:pt-0 print:hidden">
-            <div className="lg:sticky lg:top-0 lg:max-h-screen lg:overflow-y-auto lg:pt-10.5 lg:pr-4 lg:pb-12">
+        <div
+            data-part="sidebar"
+            className={classNames(
+                "lg:border-line pt-4 lg:w-(--width-sidebar) lg:shrink-0 lg:pt-0 print:hidden",
+                isOnRight ? "lg:border-l" : "lg:border-r"
+            )}
+        >
+            <div
+                className={classNames(
+                    "lg:sticky lg:top-0 lg:max-h-screen lg:overflow-y-auto lg:pt-10.5 lg:pb-12",
+                    isOnRight ? "lg:pl-4" : "lg:pr-4"
+                )}
+            >
                 <button
                     type="button"
                     aria-expanded={isOpen}
@@ -105,9 +141,14 @@ const Sidebar = ({ routes, currentPath }: SidebarProps) => {
                     <span className="font-medium">Contents</span>
                     {!!current && (
                         <span className="text-muted flex min-w-0 items-baseline gap-2">
-                            <span className="font-mono text-xs">
-                                {current.number}
-                            </span>
+                            {isNumbered && (
+                                <span
+                                    data-part="chapter-number"
+                                    className="font-mono text-xs"
+                                >
+                                    {current.number}
+                                </span>
+                            )}
                             <span className="truncate">
                                 {current.route.title}
                             </span>
@@ -140,6 +181,7 @@ const Sidebar = ({ routes, currentPath }: SidebarProps) => {
                                     key={section.key}
                                     section={section}
                                     currentPath={currentPath}
+                                    isNumbered={isNumbered}
                                 />
                             ))}
                         </ol>

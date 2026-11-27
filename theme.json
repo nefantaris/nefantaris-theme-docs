@@ -7,5 +7,270 @@
         "notFound": "templates/NotFoundTemplate.tsx",
         "docsPage": "templates/DocsPageTemplate.tsx"
     },
-    "modes": ["light", "dark"]
+    "directives": {
+        "callout": {
+            "path": "directives/Callout.tsx",
+            "label": "Callout",
+            "description": "A boxed note, tip, warning, or danger message that stands out from the text around it.",
+            "body": "markdown",
+            "placeholder": "Callouts hold ordinary text, so they can carry **bold** words, lists, and `code` like the rest of the page.",
+            "attributes": {
+                "tone": {
+                    "type": "select",
+                    "label": "Kind",
+                    "description": "Sets the icon, the colour, and the heading readers see.",
+                    "options": [
+                        { "value": "note", "label": "Note" },
+                        { "value": "tip", "label": "Tip" },
+                        { "value": "warning", "label": "Warning" },
+                        { "value": "danger", "label": "Danger" }
+                    ],
+                    "default": "note"
+                },
+                "title": {
+                    "type": "text",
+                    "label": "Heading",
+                    "description": "Replaces the heading. Leave empty to show the kind, such as Note or Warning.",
+                    "example": "Formatting works here too"
+                }
+            }
+        },
+        "tabs": {
+            "path": "directives/Tabs.tsx",
+            "label": "Tabs",
+            "description": "Alternatives side by side, such as the same steps for macOS, Windows, and Linux. Readers pick one tab at a time.",
+            "body": "markdown",
+            "placeholder": ":::tab{label=\"macOS\"}\nInstall it with Homebrew:\n\n```sh\nbrew install example\n```\n:::\n\n:::tab{label=\"Windows\"}\nInstall it with winget:\n\n```sh\nwinget install example\n```\n:::\n\n:::tab{label=\"Linux\"}\nInstall it with your package manager:\n\n```sh\nsudo apt install example\n```\n:::"
+        },
+        "tab": {
+            "path": "directives/Tab.tsx",
+            "label": "Tab",
+            "description": "One tab inside Tabs. On its own it shows as a single labelled panel.",
+            "body": "markdown",
+            "placeholder": "What readers who pick this tab need to know.",
+            "attributes": {
+                "label": {
+                    "type": "text",
+                    "label": "Tab name",
+                    "description": "The name on the tab, such as macOS or npm.",
+                    "required": true,
+                    "example": "npm"
+                }
+            }
+        }
+    },
+    "modes": ["light", "dark"],
+    "parts": {
+        "site-header": {
+            "label": "Header",
+            "description": "The bar across the top of every page, with the site name, the menu, and the light and dark switch."
+        },
+        "site-name": {
+            "label": "Site name",
+            "description": "The site's name in the header, linking to the home page."
+        },
+        "nav": {
+            "label": "Navigation",
+            "description": "The menu links in the header."
+        },
+        "sidebar": {
+            "label": "Docs sidebar",
+            "description": "The numbered contents beside docs pages. On phones, the Contents button above the page and the list it opens."
+        },
+        "main": {
+            "label": "Main area",
+            "description": "The page between the header and the footer. On docs pages it sits beside the sidebar."
+        },
+        "page-header": {
+            "label": "Page title",
+            "description": "The block above the text of every page: the title, the description, and on docs pages the page number and section."
+        },
+        "content": {
+            "label": "Page content",
+            "description": "The rendered markdown of every page, and nothing the theme draws around it."
+        },
+        "chapter-number": {
+            "label": "Page numbers",
+            "description": "Numbers such as 2 and 2.1: in the sidebar, above a docs page's title, and on the previous and next links."
+        },
+        "callout": {
+            "label": "Callouts",
+            "description": "Note, tip, warning, and danger boxes. Each also carries data-tone with its kind."
+        },
+        "tabs": {
+            "label": "Tabs",
+            "description": "A tabs block: its row of tabs and the panels below. A tab on its own is marked the same way."
+        },
+        "page-nav": {
+            "label": "Previous and next links",
+            "description": "The links at the end of a docs page to the pages before and after it."
+        },
+        "site-footer": {
+            "label": "Footer",
+            "description": "The line across the bottom of every page."
+        }
+    },
+    "settings": {
+        "accentColor": {
+            "type": "color",
+            "label": "Accent colour",
+            "description": "Links, the current page in the sidebar, page numbers, focus outlines, and buttons.",
+            "group": "Colours",
+            "css": "--accent",
+            "default": { "light": "#a3391b", "dark": "#e8906f" }
+        },
+        "textColor": {
+            "type": "color",
+            "label": "Text colour",
+            "description": "Body text. Lines, quieter text, and code backgrounds are mixed from this and the background colour.",
+            "group": "Colours",
+            "css": "--ink",
+            "default": { "light": "#1c1b19", "dark": "#e8e6e1" }
+        },
+        "backgroundColor": {
+            "type": "color",
+            "label": "Background colour",
+            "description": "The page behind everything. Keep it far from the text colour so the text stays easy to read.",
+            "group": "Colours",
+            "css": "--page",
+            "default": { "light": "#fcfcfa", "dark": "#161514" }
+        },
+        "textFont": {
+            "type": "select",
+            "label": "Text font",
+            "description": "Open Sans comes with the theme. The others use fonts already on the reader's device, so they load instantly but vary a little between devices.",
+            "group": "Typography",
+            "css": "--font-text",
+            "options": [
+                {
+                    "value": "open-sans",
+                    "label": "Open Sans",
+                    "css": "\"Open Sans\", system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif"
+                },
+                {
+                    "value": "system",
+                    "label": "System, the device's own font",
+                    "css": "system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif"
+                },
+                {
+                    "value": "humanist",
+                    "label": "Humanist sans, such as Seravek or Calibri",
+                    "css": "Seravek, \"Gill Sans Nova\", Ubuntu, Calibri, \"DejaVu Sans\", sans-serif"
+                },
+                {
+                    "value": "serif",
+                    "label": "Serif, such as Charter or Cambria",
+                    "css": "Charter, \"Bitstream Charter\", \"Sitka Text\", Cambria, serif"
+                }
+            ],
+            "default": "open-sans"
+        },
+        "codeFont": {
+            "type": "select",
+            "label": "Code font",
+            "description": "Used for code and page numbers. Source Code Pro comes with the theme.",
+            "group": "Typography",
+            "css": "--font-code",
+            "options": [
+                {
+                    "value": "source-code-pro",
+                    "label": "Source Code Pro",
+                    "css": "\"Source Code Pro\", ui-monospace, \"SF Mono\", Menlo, Consolas, monospace"
+                },
+                {
+                    "value": "system",
+                    "label": "System, the device's own code font",
+                    "css": "ui-monospace, \"SF Mono\", \"Cascadia Code\", Menlo, Consolas, \"DejaVu Sans Mono\", monospace"
+                }
+            ],
+            "default": "source-code-pro"
+        },
+        "corners": {
+            "type": "select",
+            "label": "Corners",
+            "description": "How rounded buttons, code blocks, tables, and boxes are.",
+            "group": "Shape and width",
+            "css": "--radius",
+            "options": [
+                { "value": "square", "label": "Square", "css": "0rem" },
+                {
+                    "value": "slight",
+                    "label": "Slightly rounded",
+                    "css": "0.25rem"
+                },
+                { "value": "rounded", "label": "Rounded", "css": "0.375rem" },
+                {
+                    "value": "very-rounded",
+                    "label": "Very rounded",
+                    "css": "0.75rem"
+                }
+            ],
+            "default": "rounded"
+        },
+        "pageWidth": {
+            "type": "select",
+            "label": "Page width",
+            "description": "How far the header, footer, and docs area stretch on large screens.",
+            "group": "Shape and width",
+            "css": "--width-page",
+            "options": [
+                { "value": "narrow", "label": "Narrow", "css": "64rem" },
+                { "value": "medium", "label": "Medium", "css": "72rem" },
+                { "value": "wide", "label": "Wide", "css": "80rem" },
+                { "value": "full", "label": "Full window", "css": "100%" }
+            ],
+            "default": "wide"
+        },
+        "sidebarWidth": {
+            "type": "select",
+            "label": "Sidebar width",
+            "description": "How much room the docs contents get on large screens. Wider suits long page titles.",
+            "group": "Shape and width",
+            "css": "--width-sidebar",
+            "options": [
+                { "value": "narrow", "label": "Narrow", "css": "14rem" },
+                { "value": "medium", "label": "Medium", "css": "16rem" },
+                { "value": "wide", "label": "Wide", "css": "19rem" }
+            ],
+            "default": "medium"
+        },
+        "readingWidth": {
+            "type": "select",
+            "label": "Reading width",
+            "description": "The longest a line of text can get. Narrower is easier to read; wider fits big tables and code.",
+            "group": "Shape and width",
+            "css": "--width-prose",
+            "options": [
+                { "value": "narrow", "label": "Narrow", "css": "40rem" },
+                { "value": "medium", "label": "Medium", "css": "46rem" },
+                { "value": "wide", "label": "Wide", "css": "56rem" }
+            ],
+            "default": "medium"
+        },
+        "sidebarSide": {
+            "type": "select",
+            "label": "Sidebar side",
+            "description": "Where the docs contents sit on large screens. On phones they always open from a button above the page.",
+            "group": "Docs pages",
+            "options": [
+                { "value": "left", "label": "Left" },
+                { "value": "right", "label": "Right" }
+            ],
+            "default": "left"
+        },
+        "chapterNumbers": {
+            "type": "boolean",
+            "label": "Number the pages",
+            "description": "Show numbers such as 2 and 2.1 beside each docs page in the sidebar, above its title, and on the previous and next links.",
+            "group": "Docs pages",
+            "default": true
+        },
+        "pageLinks": {
+            "type": "boolean",
+            "label": "Previous and next links",
+            "description": "Show links at the end of each docs page to the pages before and after it.",
+            "group": "Docs pages",
+            "default": true
+        }
+    }
 }

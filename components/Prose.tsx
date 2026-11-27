@@ -101,7 +101,9 @@ type ProseProps = PropsWithChildren<{
 }>;
 
 const Prose = ({ className, children }: ProseProps) => (
-    <div className={classNames(proseClasses, className)}>{children}</div>
+    <div data-part="content" className={classNames(proseClasses, className)}>
+        {children}
+    </div>
 );
 
 export default Prose;

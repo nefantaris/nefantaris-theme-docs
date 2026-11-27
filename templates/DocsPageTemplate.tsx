@@ -9,9 +9,14 @@ import { docsLocation, type DocsEntry } from "../docsRoutes";
 type NeighbourLinkProps = {
     entry: DocsEntry;
     direction: "Previous" | "Next";
+    isNumbered: boolean;
 };
 
-const NeighbourLink = ({ entry, direction }: NeighbourLinkProps) => {
+const NeighbourLink = ({
+    entry,
+    direction,
+    isNumbered,
+}: NeighbourLinkProps) => {
     const isNext = direction === "Next";
 
     return (
@@ -29,21 +34,35 @@ const NeighbourLink = ({ entry, direction }: NeighbourLinkProps) => {
                 {isNext && <Icon name="arrowRight" isSmall />}
             </span>
             <span className="text-ink flex items-baseline gap-2 font-medium">
-                <span className="text-muted font-mono text-xs font-normal">
-                    {entry.number}
-                </span>
+                {isNumbered && (
+                    <span
+                        data-part="chapter-number"
+                        className="text-muted font-mono text-xs font-normal"
+                    >
+                        {entry.number}
+                    </span>
+                )}
                 {entry.route.title}
             </span>
         </Link>
     );
 };
 
-const DocsPageTemplate = ({ meta, routes, children }: TemplateProps) => {
+const DocsPageTemplate = ({
+    meta,
+    routes,
+    settings,
+    children,
+}: TemplateProps) => {
     const [currentPath] = useLocation();
     const { section, current, previous, next } = docsLocation(
         routes,
         currentPath
     );
+    const isNumbered = settings.chapterNumbers;
+    const pageNumber = isNumbered ? current?.number : undefined;
+    const sectionLabel = section?.label;
+    const hasNeighbours = settings.pageLinks && !!(previous || next);
 
     return (
         <article className="max-w-(--width-prose)">
@@ -51,26 +70,42 @@ const DocsPageTemplate = ({ meta, routes, children }: TemplateProps) => {
                 title={meta.title}
                 description={meta.description}
                 eyebrow={
-                    !!current && (
+                    !!(pageNumber || sectionLabel) && (
                         <>
-                            <span className="text-accent font-mono">
-                                {current.number}
-                            </span>
-                            {section?.label}
+                            {!!pageNumber && (
+                                <span
+                                    data-part="chapter-number"
+                                    className="text-accent font-mono"
+                                >
+                                    {pageNumber}
+                                </span>
+                            )}
+                            {sectionLabel}
                         </>
                     )
                 }
             />
             <Prose className="mt-8">{children}</Prose>
-            {!!(previous || next) && (
+            {hasNeighbours && (
                 <nav
+                    data-part="page-nav"
                     aria-label="Previous and next pages"
                     className="mt-12 grid gap-3 sm:grid-cols-2 print:hidden"
                 >
                     {!!previous && (
-                        <NeighbourLink entry={previous} direction="Previous" />
+                        <NeighbourLink
+                            entry={previous}
+                            direction="Previous"
+                            isNumbered={isNumbered}
+                        />
                     )}
-                    {!!next && <NeighbourLink entry={next} direction="Next" />}
+                    {!!next && (
+                        <NeighbourLink
+                            entry={next}
+                            direction="Next"
+                            isNumbered={isNumbered}
+                        />
+                    )}
                 </nav>
             )}
         </article>
